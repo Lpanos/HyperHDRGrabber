@@ -12,3 +12,7 @@ config.local
 platform-tools/
 scrcpy-build/
 v4l2loopback-build/
+
+# Python
+__pycache__/
+*.pyc

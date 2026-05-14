@@ -1,0 +1,16 @@
+[Unit]
+Description=Restart HyperHDR container after grabber is ready
+After=shield-grabber.service docker.service
+Requires=shield-grabber.service
+
+[Service]
+Type=oneshot
+# Only run if a container named "hyperhdr" exists. Non-zero exit here causes
+# systemd to skip the unit (not mark it failed), which is what we want when
+# the user hasn't set up HyperHDR in Docker.
+ExecCondition=/usr/bin/docker inspect hyperhdr
+ExecStartPre=/bin/sleep 30
+ExecStart=/usr/bin/docker restart hyperhdr
+
+[Install]
+WantedBy=multi-user.target

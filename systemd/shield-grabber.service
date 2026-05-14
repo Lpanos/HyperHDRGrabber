@@ -1,0 +1,16 @@
+[Unit]
+Description=HyperHDRGrabber: scrcpy + frame sustainer for HyperHDR
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+Environment=HOME=/root
+Environment=ADB_VENDOR_KEYS=/root/.android/adbkey
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/local/bin/shield-grabber.sh
+
+[Install]
+WantedBy=multi-user.target

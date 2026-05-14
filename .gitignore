@@ -1,0 +1,14 @@
+# Local config that users edit
+config.local
+*.local
+
+# Editor noise
+.vscode/
+.idea/
+*.swp
+*~
+
+# Build artifacts users might leave behind
+platform-tools/
+scrcpy-build/
+v4l2loopback-build/

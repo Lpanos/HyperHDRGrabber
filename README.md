@@ -156,6 +156,8 @@ Leaves the apt packages installed (they may be in use elsewhere) and does not to
 
 **LEDs flash on/off during paused content.** HyperHDR is pointed at video10 instead of video11. Switch the capture device in the HyperHDR settings to `ShieldCap (video11)`.
 
+**LEDs go black after the device sleeps overnight and don't recover.** The system now auto-recovers: `frame-sustainer.py` has a 90-second watchdog — if no frame arrives from video10, it exits, which causes `shield-grabber.sh` to kill the stale scrcpy process and reconnect. Recovery takes up to ~100 seconds after the device wakes and accepts ADB again. If you want no gap at all, prevent the device from sleeping: on Shield TV, set **Settings > Device Preferences > Screen saver > Put device to sleep: Never** and **Energy saving > Turn off display: Never**.
+
 **ADB shows "unauthorized" or won't connect after reboot.** The pairing was lost. Re-run `adb pair <IP>:<PORT>` (using a fresh code from the device) and `adb connect <IP>:5555`. Then re-copy `~/.android/adbkey` to `/root/.android/`.
 
 **scrcpy disconnects every ~30s.** You're on WiFi. Move the source device to Ethernet — even 500 kbps over WiFi ADB drops under continuous streaming.

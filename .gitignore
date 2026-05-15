@@ -2,6 +2,9 @@
 config.local
 *.local
 
+# Claude Code project settings
+.claude/
+
 # Editor noise
 .vscode/
 .idea/
